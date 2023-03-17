@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading"> 修改部门</div>
+            <div class="panel-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>部 门</label>
+                        <input type="text" class="form-control" name="title" placeholder="部门"
+                               value="{{ row_object.title }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">提 交</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
