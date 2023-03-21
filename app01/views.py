@@ -78,6 +78,8 @@ def user_add(request):
 
 
 class UserModelForm(forms.ModelForm):
+    name = forms.CharField(min_length=3, label="用户名")
+
     class Meta:
         model = models.UserInfo
         fields = ["name", "password", "age", 'account', 'create_time', "gender", "depart"]
@@ -114,3 +116,24 @@ def user_modelform_add(request):
 
     # 校验失败（在页面上显示错误信息）
     return render(request, 'user_modelform_add.html', {"form": form})
+
+
+def user_edit(request,nid:int):
+    """编辑用户"""
+    row_object = models.UserInfo.objects.filter(id=nid).first()
+    if request.method=='GET':
+        # 根据ID获取编辑行对应的内容
+        form = UserModelForm(instance=row_object)
+        return render(request,'user_edit.html',{'form':form})
+        # 用户POST提交数据，数据校验。
+    form = UserModelForm(data=request.POST,instance=row_object)
+    if form.is_valid():
+        # 默认保存的是用户输入的数据
+        # 单独保存其他指  form.instance.字段名=值
+        form.save()
+        return redirect('/user/list/')
+
+
+def user_delete(request,nid:int):
+    models.UserInfo.objects.filter(id=nid).delete()
+    return redirect('/user/list/')

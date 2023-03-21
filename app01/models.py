@@ -22,7 +22,7 @@ class UserInfo(models.Model):
     gender = models.SmallIntegerField(verbose_name="性别",choices=gender_choice)
     age = models.IntegerField(verbose_name="年龄")
     account = models.DecimalField(verbose_name="账户余额", max_digits=10, decimal_places=2, default=0)
-    create_time = models.DateTimeField(verbose_name="入职时间")
+    create_time = models.DateField(verbose_name="入职时间")
     # 外键约束
     # on_delete
     # models.CASCADE 级联删除
