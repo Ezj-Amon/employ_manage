@@ -6,6 +6,19 @@
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 新建靓号
             </a>
+            <div style="float: right;width: 300px;">
+                <form method="get">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search for..."
+                               value="{{ search_data }}">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                      </span>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <div class="panel panel-default">
@@ -26,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for obj in querryset %}
+                {% for obj in queryset %}
                     <tr>
                         <th scope="row">{{ obj.id }}</th>
                         <td>{{ obj.mobile }}</td>
@@ -41,6 +54,12 @@
                 {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="clearfix">
+            <ul class="pagination">
+                {{ page_string }}
+            </ul>
+
         </div>
     </div>
 
